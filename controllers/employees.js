@@ -34,6 +34,20 @@ router.get('/:id', async (req, res) => {
     }
 })
 
+
+
+router.post('/:id/exemptions', async (req, res) => {
+    try {
+        const { orgID } = req.user
+        const { id } = req.params
+        await EmployeeService.updateExemptions(orgID, id, req.body)
+        res.json({ message: "Successfully Updated" })
+    } catch (err) {
+        res.status(400).json({ message: 'Invalid Request' })
+    }
+})
+
+
 router.get('/:id/payslip', async (req, res) => {
     try {
         const { orgID } = req.user

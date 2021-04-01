@@ -42,6 +42,25 @@ const employeeSchema = Schema({
             type: mongoose.Schema.Types.ObjectId,
             ref: 'deductions'
         }
+    ],
+    exemptions: [
+        {
+            name: {
+                type: String,
+                required: true,
+                min: [2, 'Name is too short']
+            },
+            value: {
+                type: Number,
+                required: true,
+                min: [0, 'Value is too small']
+            },
+            deductible: {
+                type: Number,
+                required: true,
+                min: [0, 'Deductible is too short']
+            }
+        }
     ]
 })
 

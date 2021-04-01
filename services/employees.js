@@ -42,7 +42,6 @@ exports.getPayslipById = async (orgID, id) => {
 }
 
 
-
 exports.updateByID = async (orgID, id, employee) => {
     let u_employee = await Employees.findOne({ _id: id, orgID: orgID })
     const { name, salary, department, deductions, email, empID } = employee
@@ -52,5 +51,12 @@ exports.updateByID = async (orgID, id, employee) => {
     u_employee.salary = salary
     u_employee.department = department
     u_employee.deductions = deductions
+    await u_employee.save()
+}
+
+
+exports.updateExemptions = async (orgID, id, exemptions) => {
+    let u_employee = await Employees.findOne({ _id: id, orgID: orgID })
+    u_employee.exemptions = exemptions
     await u_employee.save()
 }
